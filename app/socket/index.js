@@ -108,8 +108,15 @@ var ioEvents = function(io) {
         // Return the user id ONLY if the user was connected to the current room using one socket
         // The user id will be then used to remove the user from users list on gameroom page
         if (cuntUserInRoom === 1) {
-          room.isOpen = true;
-          room.save();
+          if (room.currentRound >= room.rounds) {
+            // delist the quiz  or take score board
+            room.isOpen = false;
+            room.save();
+          } else {
+          	// room availble for new palyer
+            room.isOpen = true;
+            room.save();
+          }
           socket.broadcast.to(room.id).emit('removeUser', userId);
         }
       });
