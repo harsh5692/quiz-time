@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Quiz Time</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="form">
+        <div class="social-buttons">
+          <div><span>Welcome to Quiz Time</span></div>
+        </div>
+
+        <div class="form-line"></div>
+
+        <div style="margin-top: 18px;">
+            <form action="/register" class="register-form" method="post" >
+              <input type="text" name="username" placeholder="username"/>
+              <input type="password" name="password" placeholder="password"/>
+              <button type="submit">create</button>
+              <p class="message">Already registered? <a href="#">Sign In</a></p>
+              <% if (errors != null && showRegisterForm != null && showRegisterForm === true) { %>
+                <% errors.forEach(function(err){ %>
+                  <p class="message error"><%= err %></p>
+                <% }); %>
+              <% } %>
+            </form>
+            <form action="/login" class="login-form" method="post">
+              <input type="text" name="username" placeholder="username"/>
+              <input type="password" name="password" placeholder="password"/>
+              <button type="submit">login</button>
+              <p class="message">Not registered? <a href="#">Create an account</a></p>
+              <% if (errors != null && showRegisterForm == null) { %>
+                <% errors.forEach(function(err){ %>
+                  <p class="message error"><%= err %></p>
+                <% }); %>
+              <% } if (success != null && showRegisterForm == null) { %>
+                <p class="message success"><%= success %></p>
+              <% } %>
+            </form>
+        </div>
+    </div> <!-- end form -->
+    </div> <!-- end login container -->
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <% if(showRegisterForm != null && showRegisterForm === true) { %>
+        <script>
+          $('.register-form').show(); $('.login-form, .social-buttons, .form-line').hide();
+        </script>
+    <% } %>
+    <script>
+        $('.message a').click(function(){
+            $('form, .social-buttons, .form-line').animate({height: "toggle", opacity: "toggle"}, "slow");
+          });
+    </script>
+  </body>
+</html>

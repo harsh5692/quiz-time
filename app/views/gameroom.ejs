@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Quiz Time</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+  </head>
+  <body>
+    <div class="container clearfix">
+      <div class="chat">
+        <div class="chat-header clearfix">
+          <img src="<%= user.picture %>" alt="avatar">
+          <div class="chat-about">
+            <div class="chat-room"><%= room.title %></div>
+            <div class="chat-num-users"> Player(s)</div>
+            <div class="chat-room score-holder"> Score: </div>
+          </div>
+          <i class="fa fa-users"></i>
+        </div> <!-- end chat-header -->
+        
+        <div class="chat-history">
+          <ul>
+          </ul>
+        </div> <!-- end chat-history -->
+        <div class="chat-history-options">
+          <ul>
+          </ul>
+        </div> <!-- end chat-history -->
+        
+        <div class="chat-message clearfix">
+          <textarea name="message" placeholder ="Provide your answer" rows="1"></textarea> 
+          <button type="submit">SUBMIT</button>
+        </div> <!-- end chat-message -->
+      </div> <!-- end chat -->
+      
+      <div class="controls">
+          <a href="/logout" class="logout-btn">Logout</a>
+          <a href="/rooms" class="rooms-btn">Rooms</a>
+      </div>
+
+      <div class="users-list">
+        <ul class="list">
+        </ul>
+      </div>
+    </div> <!-- end container -->
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+    <script>$(function(){app.game('<%= room.id %>', '<%= user.username %>','<%= user.id %>')});</script>
+  </body>
+</html>
