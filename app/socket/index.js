@@ -113,7 +113,7 @@ var ioEvents = function(io) {
             room.isOpen = false;
             room.save();
           } else {
-          	// room availble for new palyer
+            // room availble for new palyer
             room.isOpen = true;
             room.save();
           }
@@ -170,6 +170,7 @@ var sendQuestion = function(socket, roomId) {
         // delist the quiz  or take score board
         room.isOpen = false;
         room.save();
+        socket.emit('endQuiz', room);
         socket.broadcast.to(room.id).emit('endQuiz', room);
       } else {
         Question.getQuestionNumber(room.currentRound, function(err, question) {

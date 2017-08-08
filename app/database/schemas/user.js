@@ -8,11 +8,8 @@ const SALT_WORK_FACTOR = 10;
 const DEFAULT_USER_PICTURE = "/img/user.jpg";
 
 /**
- * Every user has a username, password, socialId, and a picture.
- * If the user registered via username and password(i.e. LocalStrategy), 
- *      then socialId should be null.
- * If the user registered via social authenticaton, 
- *      then password should be null, and socialId should be assigned to a value.
+ * Every user has a username, password, and a picture.
+ * 1. User registered via username and password(i.e. LocalStrategy), 
  * 2. Hash user's password
  *
  */
@@ -20,7 +17,6 @@ var UserSchema = new Mongoose.Schema({
     username: { type: String, required: true, unique : true},
     password: { type: String, default: null },
     uId: { type: String, default: uuid.v1() },
-    socialId: { type: String, default: null },
     picture:  { type: String, default:  DEFAULT_USER_PICTURE}
 });
 
